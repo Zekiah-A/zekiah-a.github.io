@@ -3,48 +3,22 @@
 <head>
 	<title>Zekiah-A</title>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./styles.css">
 	<style>
-		h1, p {
-			font-family: Arial, sans-serif;
-			font-size: xx-large;
-		}
-
-		.centre {
-			margin: auto;
-			width: min(100%, 800px);
-			position: realtive;
-		}
-		
-		.animate-top {
-			position: relative;
-			animation: animatetop 0.4s
-		}
-
-		@keyframes animatetop
-		{
-			from {
-				top: -100px;
-				opacity: 0;
-			}
-
-			to {
-				top: 0;
-				opacity: 1;
-			}
-		}
 	</style>
 </head>
 
 <body>
 	<div class="centre">
-		<h1>Zekiah.</h1>
+		<h1 title>Zekiah.</h1>
 		<img src="cool_emoji.png" alt="yes, it's cool, i know..." width="100%" height="100">
-		<p>How can I sum up 5 years of <span class="animate-top" id="changer">experience</span> into one quote? Wait, I just did.</p>
+		<p title>How can I sum up 5 years of <span class="animate-top" id="changer">experience</span> into one quote? Wait, I just did.</p>
 		<br>
+		<h3> Who am I? </h3>
+		<p>I am a <span id="age">??</span> year old .Net and Web software developer from the UK. My goal is to create great open source software free for everyone, with the utmost significance on writing the most simple and performant code possible.</p>
 		<h3> Cool Stuff: </h3>
 		<a href="https://zekiah-a.github.io/Subliminal/">-> Methalyne blue (Subliminal) - Basically the coolest poetry anthology to ever exist.</a> <br>
-		<a href="https://rplace.tk">-> Rplace.tk - An online multiplayer canvas based game where people can collaborate on art, form alliances, or cause total anhilation.</a> <br>
-		<a href="https://www.youtube.com/channel/UCfXISF-hFL8VqpVWZhgRFDw">-> Some terrible animations.</a> <br>
+		<a href="https://rplace.tk">-> Rplace.tk - An online multiplayer canvas based game where people can collaborate on art, or cause chaos.</a> <br>
 		<a href="https://github.com/Zekiah-A">-> My github.</a> <br>
 		
 		<div style="position: fixed; bottom: 16px; width: min(100%, 800px);">
@@ -54,9 +28,10 @@
 	</div>
 </body>
 <script>
-	var texts = ["adversity", "experience", "stuff", "s o c i e t y"]
-	var point = 0
+	const texts = ["adversity", "experience", "stuff", "s o c i e t y"]
+	let point = 0
 
+	// Title animation
 	setInterval(() => {
 		changer.innerText = texts[point]
 		changer.className = "animate-top"
@@ -64,6 +39,9 @@
 
 		point = point < texts.length - 1 ? point + 1 : 0
 	}, 2000)
+
+	// Age
+	age.textContent = new Date(Date.now() - new Date(2006, 3, 8)).getUTCFullYear() - 1970
 </script>
 </html>
 

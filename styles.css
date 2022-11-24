@@ -37,7 +37,7 @@ h1[title], p[title] {
 
 .centre {
     margin: auto;
-    width: min(100%, 800px);
+    width: min(calc(100% - 16px), 800px);
     position: relative;
 }
 
@@ -45,7 +45,7 @@ h1[title], p[title] {
     background-color: var(--button-transparent);
     border-radius: 8px;
     padding: 8px;
-    cursor: pointer;
+    border: 1px solid transparent;
     transition: 0.2s border;
 }
 

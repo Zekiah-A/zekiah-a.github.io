@@ -9,22 +9,24 @@
 </head>
 
 <body>
-	<div class="centre">
-		<h1 title>Zekiah.</h1>
-		<img src="cool_emoji.png" alt="yes, it's cool, i know..." width="100%" height="100">
-		<p title>How can I sum up 5 years of <span class="animate-top" id="changer">experience</span> into one quote? Wait, I just did.</p>
-		<br>
-		
-		<div class="proceed-card">
-			<h3> Who am I? </h3>
-			<p>I am a <span id="age">??</span> year old .Net and Web software developer from the UK. My goal is to create great open source software free for everyone, with the utmost significance on writing the most simple and performant code possible.</p>
+	<div class="centre" style="display: flex; flex-direction: column; height: 100%;">
+		<div>
+			<h1 title>Zekiah.</h1>
+			<img src="cool_emoji.png" alt="yes, it's cool, i know..." width="100%" height="100">
+			<p title>How can I sum up 5 years of <span class="animate-top" id="changer">experience</span> into one quote? Wait, I just did.</p>
+			<br>
 		</div>
-		
-		<h3> Cool Stuff: </h3>
-		<a href="https://zekiah-a.github.io/Subliminal/">-> Methalyne blue (Subliminal) - Basically the coolest poetry anthology to ever exist.</a> <br>
-		<a href="https://rplace.tk">-> Rplace.tk - An online multiplayer canvas based game where people can collaborate on art, or cause chaos.</a> <br>
-		<a href="https://github.com/Zekiah-A">-> My github.</a> <br>
-		
+		<div>
+			<div class="proceed-card">
+				<h3> Who am I? </h3>
+				<p>I am a <span id="age">??</span> year old .Net and Web software developer from the UK. My goal is to create great open source software free for everyone, with the utmost significance on writing the most simple and performant code possible.</p>
+			</div>
+			
+			<h3> Cool Stuff: </h3>
+			<a href="https://zekiah-a.github.io/Subliminal/">-> Methalyne blue (Subliminal) - Basically the coolest poetry anthology to ever exist.</a> <br>
+			<a href="https://rplace.tk">-> Rplace.tk - An online multiplayer canvas based game where people can collaborate on art, or cause chaos.</a> <br>
+			<a href="https://github.com/Zekiah-A">-> My github.</a> <br>
+		</div>
 		<div style="position: fixed; bottom: 16px; width: min(100%, 800px);">
 			<hr>
 			<p style="font-size: xx-small;">- A low effort website by Zekiah</p>
@@ -39,7 +41,7 @@
 	setInterval(() => {
 		changer.className = ""
 		changer.innerText = texts[point]
-		changer.className = "animate-top"
+		setTimeout(() => {changer.className = "animate-top"}, 400)
 
 		point = point < texts.length - 1 ? point + 1 : 0
 	}, 2000)

@@ -27,7 +27,8 @@ body {
     margin: 8px;
     width: calc(100% - 16px);
     height: calc(100% - 16px);
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 h1[title], p[title] {

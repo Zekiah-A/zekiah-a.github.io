@@ -1,3 +1,23 @@
+:root {
+    --button-opaque: #f2f2f2;
+    --button-transparent: #f2f2f2b8;
+    --panel-transparent: #f2f2f240;
+    --background-opaque: #ffffff;
+    --background-transparent: #ffffff33;
+    --text-colour: black;
+}
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        --button-opaque: #373737;
+        --button-transparent: #373737b8;
+        --panel-transparent: #37373740;
+        --background-opaque: #1e1e1e;
+        --background-transparent: #1e1e1e33;
+        --text-colour: #DADADA;
+    }    
+}
+
 html {
     overflow: hidden;
 }
@@ -5,8 +25,8 @@ html {
 body {
     position: absolute;
     margin: 8px;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
     overflow: hidden;
 }
 
@@ -20,6 +40,19 @@ h1[title], p[title] {
     width: min(100%, 800px);
     position: relative;
 }
+
+.proceed-card {
+    background-color: var(--button-transparent);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.2s border;
+}
+
+.proceed-card:hover {
+    border: 1px solid lightgray;
+}
+
 
 .animate-top {
     position: relative;

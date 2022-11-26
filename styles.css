@@ -29,6 +29,7 @@ body {
     height: calc(100% - 16px);
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: var(--background-opaque);
 }
 
 h1[title], p[title] {

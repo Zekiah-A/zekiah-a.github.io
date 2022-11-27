@@ -51,10 +51,25 @@ h1[title], p[title] {
     transition: 0.2s border;
 }
 
+.proceed-card > h3 {
+    margin-top: 0px;
+}
+
 .proceed-card:hover {
     border: 1px solid lightgray;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: min(calc(100% - 16px), 800px);
+    left: 50%;
+    backdrop-filter: blur(10px);
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 16px;
+    transform: translateX(-50%);
+}
 
 .animate-top {
     position: relative;

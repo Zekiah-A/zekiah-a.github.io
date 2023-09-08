@@ -46,7 +46,20 @@
 	}, 2000)
 	age.textContent = new Date(Date.now() - new Date(2006, 3, 8)).getUTCFullYear() - 1970
 
-	/*function loadShader(gl, vertexSource, fragmentSource) {
+	function loadShader(gl, type, source) {
+		const shader = gl.createShader(type)
+		gl.shaderSource(shader, source)
+		gl.compileShader(shader)
+		if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+			alert(`Failed to compile shader: ${gl.getShaderInfoLog(shader)}`)
+			gl.deleteShader(shader)
+			return null
+		}
+
+		return shader
+	}
+
+	function compileShaderProgram(gl, vertexSource, fragmentSource) {
 		const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vertexSource)
 		const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fragmentSource)
 
@@ -69,50 +82,50 @@
 		uniform mat4 uProjectionMatrix;
 		
 		void main() {
-			gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+			// uProjectionMatrix * uModelViewMatrix *
+			gl_Position = aVertexPosition;
 		}
 	`
 
 	const fragment = `
 		void main() {
-      		gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+      		gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
     	}
 	`
 
 	const gl = canvas.getContext("webgl")
     gl.clear(gl.COLOR_BUFFER_BIT)
-
-	const verticies = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0]
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies), gl.STATIC_DRAW);
 	
-	function bindBufferPositionAttrib(gl, buffers, vertexPositionAttribute) {
+	function bindBufferPositionAttrib(gl, buffer, vertexPositionAttrib) {
 		const components = 2
 		const type = gl.FLOAT
 		const normalize = false
 		const stride = 0 // Ignore, use components + type to determine byte stride
 		const offset = 0 // Start from buffer start
 
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position)
-		gl.vertexAttribPointer(
-			programInfo.attribLocations.vertexPosition,
-			components,
-			type,
-			normalize,
-			stride,
-			offset,
-		)
-
-		gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+		gl.vertexAttribPointer(vertexPositionAttrib, components, type, normalize, stride, offset)
+		gl.enableVertexAttribArray(vertexPositionAttrib)
 	}
 
-	const program = loadShader(gl, vertex, fragment)
-	gl.getAttribLocation(program, "aVertexPosition")
-	
+	function createPositionBuffer(positionsArr) {
+		const buffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionsArr), gl.STATIC_DRAW)
+
+		return buffer
+	}
+
+	const program = compileShaderProgram(gl, vertex, fragment)
+	const vertexPosAttrib = gl.getAttribLocation(program, "aVertexPosition")
+	const vertexPosBuffer = createPositionBuffer([1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0])
+	bindBufferPositionAttrib(gl, vertexPosBuffer, vertexPosAttrib)
+
 	gl.useProgram(program)
 
     const offset = 0
     const vertexCount = 4
-    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount)*/
+    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount)
 </script>
 </html>
 

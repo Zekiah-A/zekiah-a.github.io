@@ -35,6 +35,15 @@ body {
 h1[title], p[title] {
     font-family: Arial, sans-serif;
     font-size: xx-large;
+    cursor: default;
+}
+
+span, p {
+    cursor: default;
+}
+
+span, p, a {
+    font-family: Arial, sans-serif;
 }
 
 .centre {

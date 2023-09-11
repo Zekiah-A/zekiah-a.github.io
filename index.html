@@ -22,15 +22,19 @@
 				<p>I am a <span id="age">??</span> year old .Net and Web software developer from the UK. My goal is to create great open source software free for everyone, with the utmost significance on writing the most simple and performant code possible.</p>
 			</div>
 			<div style="margin-bottom: 64px;">
-				<h3> Cool Stuff: </h3>
-				<a href="https://poemanthology.org">-> (Methalyne blue) Subliminal - Basically the coolest poetry anthology to ever exist.</a> <br>
-				<a href="https://rplace.live">-> rplace.live - An online multiplayer canvas based game where people can collaborate on art, or cause chaos.</a> <br>
-				<a href="https://github.com/Zekiah-A">-> My github.</a> <br>
+				<h3>Cool Stuff:</h3>
+				<ul>
+					<li><a href="https://poemanthology.org">Subliminal - <sup>(A methalyne blue anthology)</sup> Basically the coolest poetry anthology to ever exist</a></li>
+					<li><a href="https://rplace.live">rplace.live - An online multiplayer canvas based game where people can collaborate on art, or start wars and create masterpieces</a></li>
+					<li><a href="https://github.com/Zekiah-A">My github - You can find most of my projects and contributions here</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="footer">
-			<hr>
-			<p style="font-size: xx-small;">- A low effort website by Zekiah</p>
+			<span>A low effort website by Zekiah</span>
+			<a href="mailto:zekiahamoako@outlook.com">Email</a>
+			<a href="https://discordapp.com/users/688129873595990049">Discord</a>
+			<a href="https://t.me/zekiahepic">Telegram</a>
 		</div>
 	</div>
 </body>
@@ -51,7 +55,7 @@
 		gl.shaderSource(shader, source)
 		gl.compileShader(shader)
 		if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-			alert(`Failed to compile shader: ${gl.getShaderInfoLog(shader)}`)
+			console.error(`Failed to compile shader: ${gl.getShaderInfoLog(shader)}`)
 			gl.deleteShader(shader)
 			return null
 		}
@@ -78,19 +82,49 @@
 
 	const vertex = `
 		attribute vec4 aVertexPosition;
-		uniform mat4 uModelViewMatrix;
-		uniform mat4 uProjectionMatrix;
 		
-		void main() {
-			// uProjectionMatrix * uModelViewMatrix *
+		void main()
+		{
 			gl_Position = aVertexPosition;
 		}
 	`
-
 	const fragment = `
-		void main() {
-      		gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
-    	}
+		#ifdef GL_ES
+			precision mediump float;
+		#endif
+		#define PI 3.14159265358979323846
+		#define e  2.71828182845904523
+		float dis=.52;
+		float width=.2;
+		float blur=.2;
+
+		uniform float time;
+		uniform vec2 viewportSize;
+
+		void main()
+		{
+			// Other effects
+			vec2 uv = gl_FragCoord.xy / viewportSize;
+			float timeCurveS = (sin(time / 20.0) + 1.0) / 2.0; // Controls fading in and out
+			float xCurve = (sin(gl_FragCoord.x * 0.1) + 1.0) / 2.0; // Makes circle
+			float yCurve = (sin(gl_FragCoord.y * 0.1) + 1.0) / 2.0; // Makes circle
+
+			// Spiral
+			vec2 pos = vec2(0.5 * (viewportSize.x / viewportSize.y), 0.5);
+			vec2 o = uv + vec2(-0.5 * pos.x, -0.5 * pos.y);
+			float angle = atan(o.y, o.x);
+			float l = length(o);
+			float offset = abs(o.x) + abs(o.y) + (angle / (2.0 * PI)) * dis;
+			float circles = mod(offset - time, dis);
+			vec3 colour = (smoothstep(circles - blur, circles, width) 
+				- smoothstep(circles, circles + blur, width)) * vec3(0.45, 0.4, 0.4);
+
+      		gl_FragColor = vec4(
+				xCurve * yCurve * timeCurveS * colour.x,
+				xCurve * yCurve * timeCurveS * colour.y,
+				xCurve * yCurve * timeCurveS * colour.z,
+				0.2);
+		}
 	`
 
 	const gl = canvas.getContext("webgl")
@@ -100,7 +134,7 @@
 		const components = 2
 		const type = gl.FLOAT
 		const normalize = false
-		const stride = 0 // Ignore, use components + type to determine byte stride
+		const stride = 0 // Ignore, use components & type to determine byte stride
 		const offset = 0 // Start from buffer start
 
 		gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
@@ -109,8 +143,8 @@
 	}
 
 	function createPositionBuffer(positionsArr) {
-		const buffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		const buffer = gl.createBuffer()
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionsArr), gl.STATIC_DRAW)
 
 		return buffer
@@ -123,9 +157,25 @@
 
 	gl.useProgram(program)
 
-    const offset = 0
-    const vertexCount = 4
-    gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount)
+	const uniformVpSize = gl.getUniformLocation(program, "viewportSize")
+	const uniformTime = gl.getUniformLocation(program, "time")
+
+	function updateViewportSize() {
+		canvas.width = canvas.offsetWidth
+		canvas.height = canvas.offsetHeight
+		gl.viewport(0, 0, canvas.width, canvas.height)
+		gl.uniform2f(uniformVpSize, canvas.width, canvas.height)
+	}
+	
+	updateViewportSize()
+	addEventListener("resize", updateViewportSize)
+	let i = 0
+	setInterval(() => {
+		gl.clear(gl.COLOR_BUFFER_BIT)
+
+		gl.uniform1f(uniformTime, i++)
+		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4) // offset, vertex count
+	}, 16)
 </script>
 </html>
 

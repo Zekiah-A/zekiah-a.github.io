@@ -19,16 +19,19 @@
 }
 
 html {
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body {
     position: absolute;
-    margin: 8px;
-    width: calc(100% - 16px);
-    height: calc(100% - 16px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
     background-color: var(--background-opaque);
 }
 
@@ -45,11 +48,14 @@ span, p {
 span, p, a {
     font-family: Arial, sans-serif;
 }
+a:link, a:visited {
+    color: inherit;
+}
 
 .centre {
-    margin: auto;
     width: min(calc(100% - 16px), 800px);
     position: relative;
+    align-self: center;
 }
 
 .proceed-card {
@@ -64,7 +70,7 @@ span, p, a {
     margin-top: 0px;
 }
 
-.proceed-card:hover {
+.proceed-card:hover, .footer {
     border: 1px solid lightgray;
 }
 
@@ -73,11 +79,41 @@ span, p, a {
     bottom: 0px;
     width: min(calc(100% - 16px), 800px);
     left: 50%;
-    backdrop-filter: blur(10px);
+    background-color: var(--button-transparent);
+    padding-top: 4px;
     padding-right: 8px;
     padding-left: 8px;
     padding-bottom: 16px;
     transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    transition: .4s padding-bottom;
+}
+
+.footer > *:not(:last-child) {
+    margin-right: 4px;
+    padding-right: 4px;
+    position: relative;
+}
+
+.footer > *:not(:last-child)::after {
+    width: 1px;
+    top: 2px;
+    height: calc(100% - 4px);
+    background-color: black;
+    display: inline;
+    content: " ";
+    position: absolute;
+    right: 0px;
+}
+
+@media (orientation: portrait) {
+    .footer {
+        padding-bottom: 4px;
+    }
 }
 
 .animate-top {

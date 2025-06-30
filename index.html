@@ -1,181 +1,264 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Zekiah-A</title>
 	<meta charset="UTF-8">
+	<title>Zekiah</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="styles.css">
+	<script type="module" src="index.js"></script>
 </head>
-
 <body>
-	<canvas id="canvas" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%;"></canvas>	  
-	<div class="centre" style="display: flex; flex-direction: column; height: 100%;">
-		<div style="max-height: 400px;">
-			<h1 title>Zekiah.</h1>
-			<img src="cool_emoji.png" alt="yes, it's cool, i know..." width="100%" height="100">
-			<p title>How can I sum up 5 years of <span class="animate-top" id="changer">experience</span> into one quote? Wait, I just did.</p>
-			<br>
-		</div>
-		<div>
-			<div class="proceed-card">
-				<h3>Who am I?</h3>
-				<p>I am a <span id="age">??</span> year old .Net and Web software developer from the UK. My goal is to create great open source software free for everyone, with the utmost significance on writing the most simple and performant code possible.</p>
+	<!--
+		TODO: Potential: Add a mini-me, mini zekiah who is fully websocket based and interactive, can be woken up,
+		moved and poked around by users on the site, punch the bully-esque, possibly even AI LLM trained off preset
+		responses to communicate, will only be present at very bottom pf page, will hang around footer area, where
+		other people's mice will also become visible, may climb on mouse, etc, depending on mood. Will sleep, drink tea,
+		make self food, program, etc. Basically living out daily life trapped in the website. 
+	-->
+	<div class="background-gradient"></div>
+	<main>
+		<section class="centre hero">
+			<div class="hero-content">
+				<h1 class="hero-title glitch" data-text="Zekiah">Zekiah</h1>
+				<img src="assets/cool-emoji.png" alt="Cool Emoji" draggable="false" class="hero-image">
+				<blockquote class="hero-tagline">
+					<span>Creates</span>
+					<span class="tagline animate-top"><span id="changer"></span></span>
+					<span>software</span>
+				</blockquote>
 			</div>
-			<div style="margin-bottom: 64px;">
-				<h3>Cool Stuff:</h3>
-				<ul>
-					<li><a href="https://poemanthology.org">Subliminal - <sup>(A methalyne blue anthology)</sup> Basically the coolest poetry anthology to ever exist</a></li>
-					<li><a href="https://rplace.live">rplace.live - An online multiplayer canvas based game where people can collaborate on art, or start wars and create masterpieces</a></li>
-					<li><a href="https://github.com/Zekiah-A">My github - You can find most of my projects and contributions here</a></li>
-				</ul>
+		</section>
+		<section class="centre proceed-card about-me">
+			<h2>Who Am I?</h2>
+			<ul class="age-container">
+				<li>
+					I am a <span id="age" class="dynamic-age">??</span> year old multi-domain software
+					developer from the UK.
+				</li>
+				<li>
+					I seek to embrace a 'jack of all trades' mentality in everything I do,
+					with a motto of being a 'master of some, and <strong>pretty damn good</strong>
+					at the rest.'
+				</li>
+			</ul>
+		</section>
+		<button type="button" class="proceed-button">
+			<img src="assets/arrow-down.svg" alt="Arrow" width="24" height="24">
+		</button>
+		<section class="centre">
+			<h2>My philosophy</h2>
+			<p>
+				My goal is to create exceptional open-source software that's accessible, fun,
+				and most importantly, great.
+
+				That's why when I build software, I build it on the pillars of one of the following values
+			</p>
+			<details>
+				<summary>Connected</summary>
+				Brings people, ideas or communities together
+				<!--
+					TODO: Expand on this
+				-->
+			</details>
+			<details>
+				<summary>Constructive</summary>
+				Builds, extends and increments upon existing infrastructure and ideas
+				<!--
+					TODO: Expand on this
+				-->
+			</details>
+			<details>
+				<summary>Cool</summary>
+				Is fun, innovative or intriguing
+				<!--
+					TODO: Expand on this
+				-->
+			</details>
+		</section>
+		<section class="centre">
+			<h2>My expertise</h2>
+			<p>
+				I have a wide range of skills and experience in software development,
+				stemming from years of hobby coding and current studies in undergraduate
+				bachelors computer science, giving me a strong foundation in:
+			</p>
+			<ul>
+				<li>
+					Frontend & Backend Development using technologies like:
+					<ul>
+						<li>HTML, CSS, JavaScript, TypeScript</li>
+						<li>Lit</li>
+						<li>Node.js, Express.js, BunJS</li>
+						<li>Dotnet frameworks</li>
+					</ul>
+				</li>
+				<li>Game Development</li>
+				<li>Data Science and Analysis</li>
+				<li>DevOps and Cloud Computing</li>
+				<li>
+					A diverse range of programming languages and frameworks, with particular expertise in:
+					<ul>
+						<li>C# (ASP.NET, EFCore, AvaloniaUI)</li>
+						<li>JavaScript & Typescript (Lit, NodeJS, Vite, Bun)</li>
+						<li>C (Embedded Systems, OpenGL, Emscripten)</li>
+						<li>C++ (Qt, Godot)</li>
+					</ul>
+				</li>
+			</ul>
+				<!--
+					
+				-->
+			
+		</section>
+		<section class="projects">
+			<div class="centre">
+				<h2>What I've built...</h2>
 			</div>
-		</div>
-		<div class="footer">
-			<span>A low effort website by Zekiah</span>
-			<a href="mailto:zekiahamoako@outlook.com">Email</a>
-			<a href="https://discordapp.com/users/688129873595990049">Discord</a>
-			<a href="https://t.me/zekiahepic">Telegram</a>
-		</div>
-	</div>
+			<!-- TODO: Would be sick if on hover shows a vid or animation of the software in action -->
+			<!--
+				"Immerse me"  Button that transitions into immersive mode, each card takes up the screen
+				and has an insane scolling anim / animated background with a long description.
+
+				Example markup:
+				|                                             |
+				\---------------------------------------------/
+				/---------------------------------------------\
+				| FLOYDVERSE                                  |
+				| A collection of games, software and         |
+				| large scale multimedia works                |
+				| all based around a bizzare alternate        |
+				| reality plotline              [EXPLORE]     |
+				|  ----                         [Github]      |
+				|  \   \         _____                        |
+				|   \   \       /    /                        |
+				|    ----      /    /                         |
+				|             -----                           |
+				\---------------------------------------------/
+				/---------------------------------------------\
+				| SUBLIMINAL                                  |
+				| An open source poetry creation platform,    |
+			-->
+			<article class="immersive-card floydverse">
+				<h2>Floydverse</h2>
+				<p>
+					A collection of games, software and large scale multimedia works
+					all based around a bizzare alternate reality plotline.
+				</p>
+				<a href="https://floydverse.com" rel="noopener" target="_blank" class="project-link">Explore</a>
+				<a href="https://github.com/floydverse" rel="noopener" target="_blank" class="project-link">Github</a>
+			</article>
+			<article class="immersive-card subliminal">
+				<h2>Subliminal</h2>
+				<p>
+					An open source poetry creation platform, where anyone can contribute,
+					share and curate poetic works.
+				</p>
+				<a href="https://poemanthology.org" rel="noopener" target="_blank" class="project-link">Explore</a>
+				<a href="https://github.com/Zekiah-A/Subliminal" rel="noopener" target="_blank" class="project-link">GitHub</a>
+			</article>
+			<article class="immersive-card rplacelive">
+				<h2>rplace.live</h2>
+				<p>
+					An open source poetry creation platform, where anyone can contribute,
+					share and curate poetic works.
+				</p>
+				<a href="https://poemanthology.org" rel="noopener" target="_blank" class="project-link">Explore</a>
+				<a href="https://github.com/Zekiah-A/Subliminal" rel="noopener" target="_blank" class="project-link">GitHub</a>
+			</article>
+			<article class="immersive-card august21st">
+				<h2>August 21st</h2>
+				<p>
+					A high intensity massively multiplayer sandbox survival game.
+				</p>
+				<a href="https://github.com/Zekiah-A/Subliminal" rel="noopener" target="_blank" class="project-link">GitHub</a>
+			</article>
+			<div class="project-grid">
+				<article class="project-card">
+					<h3>
+						<img src="assets/subliminal.svg" alt="Abbstrakt dog" width="24" height="24">
+						<span>Subliminal</span>
+					</h3>
+					<p>
+						An open source poetry creation platform, where anyone can contribute,
+						share and curate poetic works.
+					</p>
+					<a href="https://poemanthology.org" rel="noopener" target="_blank" class="project-link">Explore</a>
+					<a href="https://github.com/Zekiah-A/Subliminal" rel="noopener" target="_blank" class="project-link">Github</a>
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="assets/rplace.svg" alt="Place" width="24" height="24">
+						<span>rplace.live</span>
+					</h3>
+					<p>
+						An online multiplayer canvas where collaboration meets chaos -
+						create art or start digital wars one pixel at a time
+					</p>
+					<a href="https://rplace.live" rel="noopener" target="_blank" class="project-link">Play Now</a>
+					<a href="https://github.com/rplacelive" rel="noopener" target="_blank" class="project-link">Github</a>
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="" alt="" width="24" height="24">
+						<span>Floydverse</span>
+					</h3>
+					<p>
+
+					</p>
+					<a href="https://github.com/Zekiah-A" rel="noopener" target="_blank" class="project-link">Play Now</a>
+					<a href="https://github.com/floydverse" rel="noopener" target="_blank" class="project-link">Github</a>
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="" alt="" width="24" height="24">
+						<span>August 21st</span>
+					</h3>
+					<p>
+						A high intensity massively multiplayer sandbox survival game.
+					</p>
+					<a href="https://github.com/Zekiah-A" rel="noopener" target="_blank" class="project-link">Play Now</a>
+					<a href="https://github.com/floydverse" rel="noopener" target="_blank" class="project-link">Github</a>
+
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="" alt="" width="24" height="24">
+						<span>shared-ipc</span>
+					</h3>
+					<p>
+						A simple JavaScript library providing an asynchronous method
+						call interface for Workers, Iframes and cross-window contexts.
+					</p>
+					<a href="https://github.com/Zekiah-A" rel="noopener" target="_blank" class="project-link">Learn More</a>
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="" alt="" width="24" height="24">
+						<span>libnanobuf</span>
+					</h3>
+					<p>
+						A super simple, easy, and modern C binary serialisation/deserialisation
+						library.
+					</p>
+					<a href="https://github.com/Zekiah-A" rel="noopener" target="_blank" class="project-link">Learn More</a>
+				</article>
+				<article class="project-card">
+					<h3>
+						<img src="assets/github.svg" alt="Octocat" width="24" height="24">
+						<span>See More</span>
+					</h3>
+					<p>
+						Want to see more? Find my projects, experiments and forks all on GitHub.
+					</p>
+					<a href="https://github.com/Zekiah-A" rel="noopener" target="_blank" class="project-link">Profile</a>
+				</article>
+			</div>
+		</section>
+	</main>
+	<footer class="footer">
+		<a href="mailto:zekiahamoako@outlook.com">Email</a>
+		<a href="https://discordapp.com/users/688129873595990049">Discord</a>
+		<a href="https://t.me/zekiahepic">Telegram</a>
+	</footer>
 </body>
-<script>
-	const texts = [ "adversity", "experience", "stuff", "s o c i e t y" ]
-	let point = 0
-	setInterval(() => {
-		changer.className = "animate-top"
-		changer.innerText = texts[point]
-		setTimeout(() => {changer.className = ""}, 400)
-
-		point = point < texts.length - 1 ? point + 1 : 0
-	}, 2000)
-	age.textContent = new Date(Date.now() - new Date(2006, 3, 8)).getUTCFullYear() - 1970
-
-	function loadShader(gl, type, source) {
-		const shader = gl.createShader(type)
-		gl.shaderSource(shader, source)
-		gl.compileShader(shader)
-		if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-			console.error(`Failed to compile shader: ${gl.getShaderInfoLog(shader)}`)
-			gl.deleteShader(shader)
-			return null
-		}
-
-		return shader
-	}
-
-	function compileShaderProgram(gl, vertexSource, fragmentSource) {
-		const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vertexSource)
-		const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fragmentSource)
-
-		const program = gl.createProgram()
-		gl.attachShader(program, vertexShader)
-		gl.attachShader(program, fragmentShader)
-		gl.linkProgram(program)
-
-		if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-			console.error(`Failed to init shader: ${gl.getProgramInfoLog(program,)}`)
-			return null
-		}
-		
-		return program
-	}
-
-	const vertex = `
-		attribute vec4 aVertexPosition;
-		
-		void main()
-		{
-			gl_Position = aVertexPosition;
-		}
-	`
-	const fragment = `
-		#ifdef GL_ES
-			precision mediump float;
-		#endif
-		#define PI 3.14159265358979323846
-		#define e  2.71828182845904523
-		float dis=.52;
-		float width=.2;
-		float blur=.2;
-
-		uniform float time;
-		uniform vec2 viewportSize;
-
-		void main()
-		{
-			// Other effects
-			vec2 uv = gl_FragCoord.xy / viewportSize;
-			float timeCurveS = (sin(time / 20.0) + 1.0) / 2.0; // Controls fading in and out
-			float xCurve = (sin(gl_FragCoord.x * 0.1) + 1.0) / 2.0; // Makes circle
-			float yCurve = (sin(gl_FragCoord.y * 0.1) + 1.0) / 2.0; // Makes circle
-
-			// Spiral
-			vec2 pos = vec2(0.5 * (viewportSize.x / viewportSize.y), 0.5);
-			vec2 o = uv + vec2(-0.5 * pos.x, -0.5 * pos.y);
-			float angle = atan(o.y, o.x);
-			float l = length(o);
-			float offset = abs(o.x) + abs(o.y) + (angle / (2.0 * PI)) * dis;
-			float circles = mod(offset - time, dis);
-			vec3 colour = (smoothstep(circles - blur, circles, width) 
-				- smoothstep(circles, circles + blur, width)) * vec3(0.45, 0.4, 0.4);
-
-      		gl_FragColor = vec4(
-				xCurve * yCurve * timeCurveS * colour.x,
-				xCurve * yCurve * timeCurveS * colour.y,
-				xCurve * yCurve * timeCurveS * colour.z,
-				0.2);
-		}
-	`
-
-	const gl = canvas.getContext("webgl")
-    gl.clear(gl.COLOR_BUFFER_BIT)
-	
-	function bindBufferPositionAttrib(gl, buffer, vertexPositionAttrib) {
-		const components = 2
-		const type = gl.FLOAT
-		const normalize = false
-		const stride = 0 // Ignore, use components & type to determine byte stride
-		const offset = 0 // Start from buffer start
-
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
-		gl.vertexAttribPointer(vertexPositionAttrib, components, type, normalize, stride, offset)
-		gl.enableVertexAttribArray(vertexPositionAttrib)
-	}
-
-	function createPositionBuffer(positionsArr) {
-		const buffer = gl.createBuffer()
-		gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionsArr), gl.STATIC_DRAW)
-
-		return buffer
-	}
-
-	const program = compileShaderProgram(gl, vertex, fragment)
-	const vertexPosAttrib = gl.getAttribLocation(program, "aVertexPosition")
-	const vertexPosBuffer = createPositionBuffer([1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0])
-	bindBufferPositionAttrib(gl, vertexPosBuffer, vertexPosAttrib)
-
-	gl.useProgram(program)
-
-	const uniformVpSize = gl.getUniformLocation(program, "viewportSize")
-	const uniformTime = gl.getUniformLocation(program, "time")
-
-	function updateViewportSize() {
-		canvas.width = canvas.offsetWidth
-		canvas.height = canvas.offsetHeight
-		gl.viewport(0, 0, canvas.width, canvas.height)
-		gl.uniform2f(uniformVpSize, canvas.width, canvas.height)
-	}
-	
-	updateViewportSize()
-	addEventListener("resize", updateViewportSize)
-	let i = 0
-	setInterval(() => {
-		gl.clear(gl.COLOR_BUFFER_BIT)
-
-		gl.uniform1f(uniformTime, i++)
-		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4) // offset, vertex count
-	}, 16)
-</script>
 </html>
-
